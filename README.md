@@ -4,7 +4,7 @@ A console-based Java application for managing port cargo and logistics.
 ## Project Members
 
 - Resul Mutlu
-- Abdullah Kuşçular
+- Abdullah Kuscular
 
 ## Project Idea
 
