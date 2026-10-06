@@ -1,2 +1,5 @@
-public class Inspectable {
+
+public interface Inspectable {
+    void inspect();
+    boolean isInspected();
 }
