@@ -16,8 +16,15 @@ public class ContainerCargo extends Cargo {
 
         // Calls the Cargo constructor to initialize.
         super(id, description, weight, owner);
-        // Stores the container number.
-        this.containerNumber = containerNumber;
+
+        // Rejects null, empty, or whitespace-only container numbers.
+        if (containerNumber == null || containerNumber.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Container number cannot be empty.");
+        }
+
+        // Removes leading and trailing spaces before storing the number.
+        this.containerNumber = containerNumber.trim();
     }
 
     // Calculates the fee using a rate of $2 per kilogram.
