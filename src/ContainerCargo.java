@@ -1,7 +1,7 @@
 
 // Represents container cargo in the port system.
 // Inherits shared cargo information from Cargo.
-public class ContainerCargo extends Cargo {
+public class ContainerCargo extends Cargo implements Inspectable{
 
     // Stores the container number. It cannot be reassigned after construction.
     private final String containerNumber;
