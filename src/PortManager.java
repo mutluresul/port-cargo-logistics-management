@@ -89,4 +89,13 @@ public class PortManager {
         return null;
     }
 
+    //Returns the maximum capacity.
+    public double getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    // Calculates the free capacity in the port.
+    public double getRemainingCapacity() {
+        return maxCapacity - getTotalWeight();
+    }
 }
