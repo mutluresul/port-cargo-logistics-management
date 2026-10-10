@@ -28,4 +28,12 @@ public class PortManager {
         cargoList.add(cargo);
     }
 
+    // Remove the cargo
+    public void removeCargo(Cargo cargo) {
+        if (cargoList.contains(cargo)) {
+            return cargoList.remove(cargo);
+        }
+        throw new IllegalArgumentException("Cargo does not exists!");
+    }
+
 }
