@@ -48,4 +48,13 @@ public class PortManager {
         }
     }
 
+    // Aggregates the weights of all cargo in the collection.
+    public double getTotalWeight() {
+        double total = 0;
+        for (Cargo cargo : cargoList) {
+            total += cargo.getWeight();
+        }
+        return total;
+    }
+
 }
