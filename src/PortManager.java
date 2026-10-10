@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+//Manages cargo och enforces the port's weight capacity.
 public class PortManager {
 
     // Keep different cargo types in one polymorphic collection.
@@ -29,7 +30,7 @@ public class PortManager {
     }
 
     // Remove the cargo or return null
-    public void removeCargo(Cargo cargo) {
+    public boolean removeCargo(Cargo cargo) {
         if (cargoList.contains(cargo)) {
             return cargoList.remove(cargo);
         }
