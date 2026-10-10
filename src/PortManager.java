@@ -66,4 +66,27 @@ public class PortManager {
         return total;
     }
 
+    //Performs inspection through an interface reference.
+    public void inspectCargo(String id) {
+        Cargo cargo = findCargoById(id);
+        if (!cargoList.contains(cargo)) {
+            throw new IllegalArgumentException("Cargo does not exists!");
+        }
+        if (!(cargo instanceof Inspectable)) {
+            throw new IllegalArgumentException("Cargo is not Inspectable!");
+        }
+        Inspectable inspectable = (Inspectable) cargo;
+        inspectable.inspect();
+    }
+
+    //Returns matching cargo or null
+    public Cargo findCargoById(String id) {
+        for (Cargo cargo : cargoList) {
+            if (cargo.getId().equals(id)) {
+                return cargo;
+            }
+        }
+        return null;
+    }
+
 }
