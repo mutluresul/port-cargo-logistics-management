@@ -28,12 +28,24 @@ public class PortManager {
         cargoList.add(cargo);
     }
 
-    // Remove the cargo
+    // Remove the cargo or return null
     public void removeCargo(Cargo cargo) {
         if (cargoList.contains(cargo)) {
             return cargoList.remove(cargo);
         }
         throw new IllegalArgumentException("Cargo does not exists!");
+    }
+
+    //Prints all cargos in port
+    public void displayAllCargo() {
+        if (cargoList.isEmpty()) {
+            System.out.println("No Cargos!");
+            return;
+        }
+        //Calls the method that display details.
+        for (Cargo cargo : cargoList) {
+            cargo.displayDetails();
+        }
     }
 
 }
