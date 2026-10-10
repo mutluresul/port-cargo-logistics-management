@@ -14,6 +14,18 @@ public class PortManager {
     this.maxCapacity = maxCapacity;
     }
 
-
+    // Adds cargo only after checking its data, ID.
+    public void addCargo(Cargo cargo) {
+        if (cargoList.contains(cargo)) {
+            throw new IllegalArgumentException("Cargo already exists!");
+        }
+        if (cargo == null) {
+            throw new IllegalArgumentException("Cargo cannot be null!");
+        }
+        if (cargo.getWeight() <= 0 || !Double.isFinite(cargo.getWeight())) {
+            throw new IllegalArgumentException("Weight must be positive and finite...");
+        }
+        cargoList.add(cargo);
+    }
 
 }
