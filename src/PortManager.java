@@ -57,4 +57,13 @@ public class PortManager {
         return total;
     }
 
+    //Calculates the total fee of all cargo in the port.
+    public double getTotalFees() {
+        double total = 0;
+        for (Cargo cargo : cargoList) {
+            total += cargo.getWeight();
+        }
+        return total;
+    }
+
 }
