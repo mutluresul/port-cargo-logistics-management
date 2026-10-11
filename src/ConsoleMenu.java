@@ -120,5 +120,10 @@ public class ConsoleMenu {
             cargo.displayDetails();
         }
     }
+    // Reads a cargo ID, attempts removal and displays the result.
+    private void removeCargo() {
+        boolean removed = portManager.removeCargo(readRequiredText("Cargo ID: "));
+        System.out.println(removed ? "Cargo removed." : "Cargo not found.");
+    }
 
 }
