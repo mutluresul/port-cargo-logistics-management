@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+//Handles console interaction.
 public class ConsoleMenu {
     private final PortManager  portManager;
     private final Scanner scanner;
@@ -26,7 +27,7 @@ public class ConsoleMenu {
         System.out.println("8. Exit");
     }
 
-    public void showMenu() {
+    public void start() {
         boolean running = true;
         while (running) {
             displayMenu();
@@ -73,6 +74,41 @@ public class ConsoleMenu {
                 System.out.println("Invalid Data: " + e.getMessage());
             }
         }
+    }
+
+    // Collects cargo-specific input and delegates registration to the manager.
+    private void addCargo() throws CapacityException {
+        System.out.println("1. Container  2. Bulk  3. Liquid");
+        int type = Integer.parseInt(readLine("Cargo type: "));
+        if (type < 1 || type > 3) {
+            throw new IllegalArgumentException("Choose cargo type 1, 2, or 3.");
+        }
+
+        String id = readRequiredText("ID: ");
+        String description = readRequiredText("Description: ");
+        double weight = readPositiveNumber("Weight in kg: ");
+        String owner = readRequiredText("Owner: ");
+        Cargo cargo;
+
+        switch (type) {
+            case 1:
+                String number = readRequiredText("Container number: ");
+                cargo = new ContainerCargo(id, description, weight, owner, number);
+                break;
+            case 2:
+                boolean dryStorage = readYesNo("Requires dry storage? (yes/no): ");
+                cargo = new BulkCargo(id, description, weight, owner, dryStorage);
+                break;
+            case 3:
+                double volume = readPositiveNumber("Volume in liters: ");
+                boolean hazardous = readYesNo("Hazardous? (yes/no): ");
+                cargo = new LiquidCargo(id, description, weight, owner, volume, hazardous);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported cargo type.");
+        }
+        portManager.addCargo(cargo);
+        System.out.println("Cargo added successfully.");
     }
 
 }
