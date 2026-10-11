@@ -111,4 +111,14 @@ public class ConsoleMenu {
         System.out.println("Cargo added successfully.");
     }
 
+    // Displays cargo details if found; otherwise shows a message.
+    private void searchCargo() {
+        Cargo cargo = portManager.findCargoById(readRequiredText("Cargo ID: "));
+        if (cargo == null) {
+            System.out.println("Cargo not found.");
+        } else {
+            cargo.displayDetails();
+        }
+    }
+
 }
