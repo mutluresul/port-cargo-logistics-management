@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 //Handles console interaction.
@@ -125,5 +126,43 @@ public class ConsoleMenu {
         boolean removed = portManager.removeCargo(readRequiredText("Cargo ID: "));
         System.out.println(removed ? "Cargo removed." : "Cargo not found.");
     }
+
+    // Reads complete lines to avoid Scanner's nextInt/nextLine newline issue.
+    private String readLine(String prompt) {
+        System.out.print(prompt);
+        if (!scanner.hasNextLine()) {
+            throw new NoSuchElementException("Input closed.");
+        }
+        return scanner.nextLine().trim();
+    }
+    // Handles invalid numeric input locally, keeping the current add operation.
+    private double readPositiveNumber(String prompt) {
+        while (true) {
+            try {
+                double value = Double.parseDouble(readLine(prompt));
+                if (Double.isFinite(value) && value > 0) {
+                    return value;
+                }
+                System.out.println("Enter a positive, finite number.");
+            } catch (NumberFormatException e) {
+                System.out.println("Enter a number, such as 1500 or 12.5.");
+            }
+        }
+    }
+
+    // Accepts explicit yes/no responses instead of silently assuming false.
+    private boolean readYesNo(String prompt) {
+        while (true) {
+            String value = readLine(prompt);
+            if (value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("y")) {
+                return true;
+            }
+            if (value.equalsIgnoreCase("no") || value.equalsIgnoreCase("n")) {
+                return false;
+            }
+            System.out.println("Enter yes or no.");
+        }
+    }
+
 
 }
