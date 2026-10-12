@@ -28,7 +28,7 @@ public class PortManager {
         }
         if (cargo.getWeight() > getRemainingCapacity()) {
             throw new CapacityException("Port capacity exceeded. Remaining capacity: "
-                    + getRemainingCapacity() + " kg.");
+                    + getRemainingCapacity() + " ton.");
         }
         cargoList.add(cargo);
     }
@@ -67,7 +67,7 @@ public class PortManager {
     public double getTotalFees() {
         double total = 0;
         for (Cargo cargo : cargoList) {
-            total += cargo.getWeight();
+            total += cargo.calculateFee();
         }
         return total;
     }

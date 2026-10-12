@@ -52,17 +52,19 @@ public class ConsoleMenu {
                         portManager.inspectCargo(readRequiredText("Cargo ID:"));
                         break;
                     case 6:
-                        portManager.getTotalWeight();
+                        System.out.printf("Total weight: %.2f ton%n",
+                                portManager.getTotalWeight());
                         break;
                     case 7:
-                        portManager.getTotalFees();
+                        System.out.printf("Total fees: $%.2f%n",
+                                portManager.getTotalFees());
                         break;
                     case 0:
                         running = false;
                         System.out.println("Exiting...");
                         break;
                     default:
-                        System.out.println("Choose a menu option from 0 to 7.");
+                        System.out.println("Choose a menu option between 1 and 8.");
 
                 }
             }catch (NumberFormatException e){
@@ -87,7 +89,7 @@ public class ConsoleMenu {
 
         String id = readRequiredText("ID: ");
         String description = readRequiredText("Description: ");
-        double weight = readPositiveNumber("Weight in kg: ");
+        double weight = readPositiveNumber("Weight in ton: ");
         String owner = readRequiredText("Owner: ");
         Cargo cargo;
 

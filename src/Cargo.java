@@ -13,7 +13,7 @@ public abstract class Cargo {
     // Detailed description of the cargo contents
     private String description;
 
-    // Weight of the cargo in kg
+    // Weight of the cargo in ton
     private double weight;
 
     // Owner or shipping company name
