@@ -49,7 +49,7 @@ public class ConsoleMenu {
                         removeCargo();
                         break;
                     case 5:
-                        portManager.inspectCargo(readrequiredText("Cargo ID:"));
+                        portManager.inspectCargo(readRequiredText("Cargo ID:"));
                         break;
                     case 6:
                         portManager.getTotalWeight();
@@ -135,6 +135,18 @@ public class ConsoleMenu {
         }
         return scanner.nextLine().trim();
     }
+
+    // Repeats the prompt until the user provides nonempty text.
+    private String readRequiredText(String prompt) {
+        while (true) {
+            String value = readLine(prompt);
+            if (!value.isEmpty()) {
+                return value;
+            }
+            System.out.println("This field cannot be empty.");
+        }
+    }
+
     // Handles invalid numeric input locally, keeping the current add operation.
     private double readPositiveNumber(String prompt) {
         while (true) {

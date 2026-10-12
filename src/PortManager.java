@@ -29,12 +29,13 @@ public class PortManager {
         cargoList.add(cargo);
     }
 
-    // Remove the cargo or return null
-    public boolean removeCargo(Cargo cargo) {
-        if (cargoList.contains(cargo)) {
-            return cargoList.remove(cargo);
+    // Returns true if cargo was removed, or false if no matching ID exists.
+    public boolean removeCargo(String id) {
+        Cargo cargo = findCargoById(id);
+        if (cargo == null) {
+            return false;
         }
-        throw new IllegalArgumentException("Cargo does not exists!");
+        return cargoList.remove(cargo);
     }
 
     //Prints all cargos in port
