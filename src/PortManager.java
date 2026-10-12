@@ -16,15 +16,19 @@ public class PortManager {
     }
 
     // Adds cargo only after checking its data, ID.
-    public void addCargo(Cargo cargo) {
-        if (cargoList.contains(cargo)) {
-            throw new IllegalArgumentException("Cargo already exists!");
-        }
+    public void addCargo(Cargo cargo) throws CapacityException {
         if (cargo == null) {
-            throw new IllegalArgumentException("Cargo cannot be null!");
+            throw new IllegalArgumentException("Cargo cannot be null.");
         }
-        if (cargo.getWeight() <= 0 || !Double.isFinite(cargo.getWeight())) {
-            throw new IllegalArgumentException("Weight must be positive and finite...");
+        if (!Double.isFinite(cargo.getWeight()) || cargo.getWeight() <= 0) {
+            throw new IllegalArgumentException("Cargo weight must be positive and finite.");
+        }
+        if (findCargoById(cargo.getId()) != null) {
+            throw new IllegalArgumentException("Cargo ID already exists: " + cargo.getId());
+        }
+        if (cargo.getWeight() > getRemainingCapacity()) {
+            throw new CapacityException("Port capacity exceeded. Remaining capacity: "
+                    + getRemainingCapacity() + " kg.");
         }
         cargoList.add(cargo);
     }

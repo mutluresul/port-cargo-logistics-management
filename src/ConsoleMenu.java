@@ -34,7 +34,7 @@ public class ConsoleMenu {
             displayMenu();
 
             try {
-                int choice = scanner.nextInt();
+                int choice = Integer.parseInt(readLine("Choose an option: "));
                 switch (choice) {
                     case 1:
                         addCargo();
