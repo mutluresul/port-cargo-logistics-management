@@ -59,7 +59,7 @@ public class ConsoleMenu {
                         System.out.printf("Total fees: $%.2f%n",
                                 portManager.getTotalFees());
                         break;
-                    case 0:
+                    case 8:
                         running = false;
                         System.out.println("Exiting...");
                         break;

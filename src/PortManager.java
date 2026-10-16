@@ -49,10 +49,12 @@ public class PortManager {
             return;
         }
         //Calls the method that display details.
+
         for (Cargo cargo : cargoList) {
             cargo.displayDetails();
         }
-    }
+        }
+
 
     // Aggregates the weights of all cargo in the collection.
     public double getTotalWeight() {

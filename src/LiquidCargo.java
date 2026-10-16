@@ -49,7 +49,7 @@ public class LiquidCargo extends Cargo implements Inspectable {
         System.out.println("Description: " + getDescription());
         System.out.println("Owner: " + getOwner());
         System.out.println("Weight: " + getWeight() + " ton ");
-        System.out.println("Volume: " + volume + " L");
+        System.out.println("Volume: " + volume + " m3");
         System.out.println("Is Hazardous: " + (isHazardous ? "Yes" : "No"));
         System.out.println("Inspection Status: " + (inspected ? "Passed" : "Pending"));
         System.out.println("Calculated Fee: $" + String.format("%.2f", calculateFee()));
